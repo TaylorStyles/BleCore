@@ -3,9 +3,6 @@ plugins {
     id("org.jetbrains.kotlin.android")
 }
 
-group = "com.stylesdevelopments.blecore"
-version = "1.0.0"
-
 android {
     namespace = "com.stylesdevelopments.blecore"
     compileSdk = 36
@@ -13,19 +10,6 @@ android {
     defaultConfig {
         minSdk = 28
         consumerProguardFiles("consumer-rules.pro")
-    }
-
-    buildTypes {
-        release {
-            isMinifyEnabled = true
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
-        }
-        debug {
-            isMinifyEnabled = false
-        }
     }
 
     compileOptions {
@@ -40,15 +24,14 @@ android {
 
 dependencies {
     // Kotlin + Coroutines
-    implementation(libs.kotlin.stdlib)
-    implementation(libs.coroutines.core)
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.8.1")
 
-    // AndroidX
-    implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.appcompat)
+    // AndroidX base
+    implementation("androidx.core:core-ktx:1.13.1")
+    implementation("androidx.appcompat:appcompat:1.7.0")
 
     // Nordic BLE
-    implementation(libs.nordic.ble.core)
-    implementation(libs.nordic.ble.client)
-    implementation(libs.nordic.ble.scanner)
+    implementation("no.nordicsemi.android.kotlin.ble:core:1.3.1")
+    implementation("no.nordicsemi.android.kotlin.ble:client:1.3.1")
+    implementation("no.nordicsemi.android.kotlin.ble:scanner:1.3.1")
 }
