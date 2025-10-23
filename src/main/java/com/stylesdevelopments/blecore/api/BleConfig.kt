@@ -8,6 +8,7 @@
 
 package com.stylesdevelopments.blecore.api
 
+import java.util.Collections.emptyList
 import java.util.UUID
 
 data class BleConfig(
