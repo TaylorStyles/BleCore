@@ -1,7 +1,6 @@
 plugins {
-    alias(libs.plugins.android.library)
-    alias(libs.plugins.kotlin.android)
-    id("maven-publish")
+    id("com.android.library")
+    id("org.jetbrains.kotlin.android")
 }
 
 group = "com.stylesdevelopments.blecore"
@@ -54,53 +53,4 @@ dependencies {
     implementation(libs.nordic.ble.core)
     implementation(libs.nordic.ble.client)
     implementation(libs.nordic.ble.scanner)
-}
-
-publishing {
-    publications {
-        register<MavenPublication>("release") {
-            groupId = "com.stylesdevelopments.blecore"
-            artifactId = "blecore"
-            version = "1.0.0"
-
-            afterEvaluate {
-                from(components["release"])
-            }
-
-            pom {
-                name.set("BleCore")
-                description.set("A lightweight BLE abstraction layer for Android.")
-                url.set("https://github.com/taylorstyles/BleCore")
-                licenses {
-                    license {
-                        name.set("MIT License")
-                        url.set("https://opensource.org/licenses/MIT")
-                    }
-                }
-                developers {
-                    developer {
-                        id.set("taystyles")
-                        name.set("Taylor Styles")
-                    }
-                }
-                scm {
-                    connection.set("scm:git:git://github.com/taylorstyles/BleCore.git")
-                    developerConnection.set("scm:git:ssh://github.com/taylorstyles/BleCore.git")
-                    url.set("https://github.com/taylorstyles/BleCore")
-                }
-            }
-        }
-    }
-
-    repositories {
-        maven {
-            name = "GitHubPackages"
-            url = uri("https://maven.pkg.github.com/taylorstyles/BleCore")
-
-            credentials {
-                username = project.findProperty("gpr.user") as String? ?: System.getenv("GITHUB_USER")
-                password = project.findProperty("gpr.key") as String? ?: System.getenv("GITHUB_TOKEN")
-            }
-        }
-    }
 }
